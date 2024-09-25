@@ -4,7 +4,7 @@
 #include <Array.hpp>
 
 template<typename T>
-Array<T>::Array(): Array(1) {}
+Array<T>::Array(): Array(0) {}
 
 template<typename T>
 Array<T>::Array(unsigned int n) {
@@ -25,7 +25,7 @@ Array<T>::~Array() {
 template<typename T>
 Array<T>& Array<T>::operator=(const Array<T>& other) {
 	if (this != &other) {
-		delete[] data;
+		delete[] this->data;
 		this->data = new T[other.len];
 		this->len = other.len;
 		for (unsigned int i = 0; i < other.len; i++) {
