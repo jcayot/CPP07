@@ -7,24 +7,34 @@
 
 #include "iter.hpp"
 
-void printInt(int x) {
-	std::cout << x << " ";
+class Awesome
+{
+	public:
+	Awesome( void ) : _n( 42 ) { return; }
+	int get( void ) const { return this->_n; }
+	private:
+	int _n;
+};
+
+std::ostream & operator<<( std::ostream & o, Awesome const & rhs )
+{
+	o << rhs.get();
+	return o;
 }
 
-void printDouble(double x) {
-	std::cout << x << " ";
+template< typename T >
+void print( T& x )
+{
+	std::cout << x << std::endl;
+	return;
 }
 
 int main() {
-	int intArr[] = {1, 2, 3, 4, 5};
-	size_t intLen = std::size(intArr);
-	::iter<int, void>(intArr, intLen, printInt);
-	std::cout << std::endl;
+	int tab[] = { 0, 1, 2, 3, 4 };
+	Awesome tab2[5];
 
-	const double doubleArr[] = {1.1, 2.2, 3.3, 4.4, 5.5};
-	size_t doubleLen = std::size(doubleArr);
-	::iter<double, void>(doubleArr, doubleLen, printDouble);
-	std::cout << std::endl;
+	::iter( tab, 5, print<const int> );
+	::iter( tab2, 5, print<Awesome> );
 
 	return 0;
 }
