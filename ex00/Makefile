@@ -1,6 +1,6 @@
 NAME = ex00
 CC = c++
-CFLAGS = -std=c++17 -Wall -Wextra -Werror
+CFLAGS = -std=c++98 -Wall -Wextra -Werror
 SRCS = main.cpp
 OBJS = $(SRCS:.cpp=.o)
 
